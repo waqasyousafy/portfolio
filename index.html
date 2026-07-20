@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waqas Yousaf — Senior Android Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12161C;
+    --surface: #1B212B;
+    --surface-2: #222937;
+    --text: #F1EDE4;
+    --muted: #93A0AF;
+    --accent: #8FBF6E;
+    --accent-dim: #6d9855;
+    --amber: #E8A854;
+    --line: #2A3240;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent);color:#0e120f;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(18,22,28,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px;}
+  .logo{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--accent);}
+  .logo span{color:var(--muted);}
+  .nav-links{display:flex;gap:28px;font-size:14px;color:var(--muted);}
+  .nav-links a:hover{color:var(--text);}
+  @media(max-width:640px){.nav-links{display:none;}}
+
+  header.hero{padding:150px 0 100px;position:relative;}
+  .eyebrow{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:13px;letter-spacing:0.08em;display:flex;align-items:center;gap:10px;margin-bottom:22px;opacity:0;animation:fadeUp 0.6s ease forwards;}
+  .eyebrow::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);}
+  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(38px,6vw,64px);line-height:1.05;letter-spacing:-0.02em;opacity:0;animation:fadeUp 0.6s ease 0.1s forwards;}
+  h1 .accent{color:var(--accent);}
+  .hero-sub{margin-top:22px;max-width:600px;color:var(--muted);font-size:17px;opacity:0;animation:fadeUp 0.6s ease 0.2s forwards;}
+  .hero-cta{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.6s ease 0.3s forwards;}
+  .btn{font-family:'JetBrains Mono',monospace;font-size:13px;padding:12px 22px;border-radius:6px;border:1px solid var(--line);transition:all 0.2s ease;}
+  .btn-primary{background:var(--accent);color:#0e120f;border-color:var(--accent);font-weight:500;}
+  .btn-primary:hover{background:var(--accent-dim);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+  .stack-visual{margin-top:64px;display:flex;flex-direction:column;gap:10px;max-width:520px;opacity:0;animation:fadeUp 0.7s ease 0.4s forwards;}
+  .stack-layer{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--muted);transform:translateX(-14px);opacity:0;animation:slideIn 0.5s ease forwards;position:relative;overflow:hidden;}
+  .stack-layer::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform 0.3s ease;}
+  .stack-layer:hover::before{transform:scaleY(1);}
+  .stack-layer:hover{border-color:var(--line);background:var(--surface-2);color:var(--text);}
+  .stack-layer:nth-child(1){animation-delay:0.55s;}
+  .stack-layer:nth-child(2){animation-delay:0.68s;}
+  .stack-layer:nth-child(3){animation-delay:0.81s;}
+  .stack-layer:nth-child(4){animation-delay:0.94s;}
+  .stack-layer .tag{color:var(--text);font-weight:500;}
+  .stack-layer .desc{font-size:12px;color:var(--muted);}
+  @keyframes slideIn{to{opacity:1;transform:translateX(0);}}
+
+  section{padding:90px 0;border-top:1px solid var(--line);}
+  .section-head{margin-bottom:48px;}
+  .section-num{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:13px;margin-bottom:8px;display:block;}
+  h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3.5vw,36px);font-weight:600;letter-spacing:-0.01em;}
+
+  .about-text{max-width:680px;color:var(--muted);font-size:16px;}
+  .about-text strong{color:var(--text);font-weight:600;}
+  .stat-row{display:flex;gap:40px;margin-top:36px;flex-wrap:wrap;}
+  .stat{font-family:'JetBrains Mono',monospace;}
+  .stat .num{font-size:28px;color:var(--accent);font-weight:600;}
+  .stat .label{font-size:12.5px;color:var(--muted);}
+
+  .commit-log{border-left:1px solid var(--line);margin-left:6px;}
+  .commit{position:relative;padding:0 0 44px 32px;}
+  .commit:last-child{padding-bottom:0;}
+  .commit::before{content:'';position:absolute;left:-6px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);}
+  .commit-meta{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);display:flex;gap:12px;align-items:center;margin-bottom:6px;flex-wrap:wrap;}
+  .commit-meta .dates{color:var(--muted);}
+  .commit h3{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin-bottom:12px;}
+  .commit ul{margin:0 0 14px 0;list-style:none;max-width:640px;}
+  .commit ul li{color:var(--muted);font-size:14.5px;margin-bottom:8px;padding-left:16px;position:relative;}
+  .commit ul li::before{content:'—';position:absolute;left:0;color:var(--accent);}
+  .commit ul li strong{color:var(--text);font-weight:500;}
+  .pill-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .pill{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);border:1px solid var(--line);padding:4px 10px;border-radius:20px;}
+
+  .app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+  .app-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px;transition:transform 0.25s ease,border-color 0.25s ease;display:flex;flex-direction:column;}
+  .app-card:hover{transform:translateY(-4px);border-color:var(--accent);}
+  .app-icon{width:44px;height:44px;border-radius:11px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--accent);font-size:15px;}
+  .app-card h3{font-family:'Space Grotesk',sans-serif;font-size:17px;margin-bottom:8px;}
+  .app-card p{color:var(--muted);font-size:14px;margin-bottom:16px;flex-grow:1;}
+  .app-link{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--amber);display:inline-flex;align-items:center;gap:6px;}
+  .app-link:hover{color:var(--accent);}
+
+  .skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;}
+  .skill-group h4{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--accent);letter-spacing:0.05em;margin-bottom:14px;}
+  .skill-group ul{list-style:none;}
+  .skill-group li{color:var(--muted);font-size:14.5px;padding:5px 0;border-bottom:1px dashed var(--line);}
+  .skill-group li:last-child{border-bottom:none;}
+
+  footer{padding:90px 0 60px;border-top:1px solid var(--line);}
+  footer h2{margin-bottom:16px;}
+  footer p{color:var(--muted);max-width:480px;margin-bottom:32px;}
+  .contact-links{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:60px;}
+  .contact-links a{font-family:'JetBrains Mono',monospace;font-size:13.5px;border:1px solid var(--line);padding:11px 20px;border-radius:6px;transition:all 0.2s ease;}
+  .contact-links a:hover{border-color:var(--accent);color:var(--accent);}
+  .foot-note{font-size:12.5px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+
+  @media(max-width:640px){header.hero{padding:120px 0 70px;}section{padding:60px 0;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">waqas<span>.dev</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#apps">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">OPEN TO NEW OPPORTUNITIES</div>
+    <h1>Waqas Yousaf<br>builds Android apps<br>that <span class="accent">scale to millions.</span></h1>
+    <p class="hero-sub">Senior Android Developer with 6+ years architecting and shipping apps used by 10M+ people on Google Play. Specialized in on-device AI/ML, clean architecture, and performance at scale. Based in Lahore, Pakistan.</p>
+    <div class="hero-cta">
+      <a href="mailto:waqasyousafy@gmail.com" class="btn btn-primary">Get in touch</a>
+      <a href="https://github.com/waqasyousafy" target="_blank" class="btn btn-ghost">View GitHub ↗</a>
+      <a href="https://linkedin.com/in/waqas-yousaf" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
+    </div>
+
+    <div class="stack-visual">
+      <div class="stack-layer"><span class="tag">UI Layer</span><span class="desc">Fragments · ViewBinding · Material</span></div>
+      <div class="stack-layer"><span class="tag">ViewModel</span><span class="desc">Coroutines · Flow · StateFlow</span></div>
+      <div class="stack-layer"><span class="tag">Repository</span><span class="desc">Room · Retrofit · WorkManager</span></div>
+      <div class="stack-layer"><span class="tag">Data Sources</span><span class="desc">Firebase · ML Kit · TensorFlow Lite</span></div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat"><div class="num">6+</div><div class="label">YEARS EXPERIENCE</div></div>
+      <div class="stat"><div class="num">10M+</div><div class="label">DOWNLOADS SHIPPED</div></div>
+      <div class="stat"><div class="num">9+</div><div class="label">APPS ON GOOGLE PLAY</div></div>
+      <div class="stat"><div class="num">6</div><div class="label">DEVELOPERS MENTORED</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">01 — About</span>
+      <h2>What I do</h2>
+    </div>
+    <p class="about-text">
+      I'm a <strong>Senior Android Developer</strong> with over 6 years architecting and shipping apps used by <strong>10M+ people</strong> on Google Play. I specialize in <strong>on-device AI/ML</strong>, <strong>clean architecture</strong>, and performance at scale, with a track record of mentoring engineering teams. I turn ambitious ideas into fast, reliable products that hold up in the real world — currently at <strong>Trusted Technologies</strong>, previously four years at <strong>Hazel Mobile</strong>.
+    </p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">02 — Experience</span>
+      <h2>Where I've worked</h2>
+    </div>
+    <div class="commit-log">
+      <div class="commit">
+        <div class="commit-meta"><span class="dates">August 2024 — Present · Lahore</span></div>
+        <h3>Senior Android Developer · Trusted Technologies</h3>
+        <ul>
+          <li><strong>End-to-End Ownership:</strong> Architected a consumer Android app with Kotlin, MVVM, and multi-module Repository Pattern architecture, owning it through Play Console release to scale to 10M+ downloads.</li>
+          <li><strong>On-Device AI/ML:</strong> Engineered ML Kit, TensorFlow Lite, and Tesseract4Android pipelines processing 25,000+ images — on-device computer vision, face recognition, and multilingual OCR.</li>
+          <li><strong>Real-Time Data:</strong> Built Retrofit and Firebase (Firestore, FCM) sync and notification systems using Coroutines and Flow.</li>
+          <li><strong>Quality & Monitoring:</strong> Drove crash rates to near-zero using Crashlytics and Firebase Performance, backed by JUnit, Espresso, and Mockito.</li>
+          <li><strong>Faster Releases:</strong> Configured Gradle (Kotlin DSL) with ProGuard/R8 and GitHub Actions CI/CD to speed up releases.</li>
+          <li><strong>Monetization:</strong> Owned AdMob and Play Billing strategy end-to-end, achieving a 100% fill rate without sacrificing layout stability.</li>
+          <li><strong>Mentorship:</strong> Mentored a team of 6 developers on Git workflows and Agile/Scrum through hands-on code reviews.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">MVVM</span><span class="pill">Clean Architecture</span><span class="pill">Multi-module</span><span class="pill">Hilt</span><span class="pill">SOLID</span>
+        </div>
+      </div>
+      <div class="commit">
+        <div class="commit-meta"><span class="dates">January 2020 — February 2024 · Lahore</span></div>
+        <h3>Android Developer · Hazel Mobile</h3>
+        <ul>
+          <li><strong>Product Delivery:</strong> Designed and shipped consumer Android apps in Kotlin across productivity, media, utilities, and health & lifestyle.</li>
+          <li><strong>Real-World Integrations:</strong> Connected Firebase, Retrofit, and third-party APIs (AccuWeather, IjkPlayer) to power live data and playback features.</li>
+          <li><strong>Cross-Team Delivery:</strong> Partnered with design and QA using Agile/Scrum and Git workflows to take products from concept to launch.</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">MVVM</span><span class="pill">Agile/Scrum</span><span class="pill">Git</span><span class="pill">Cross-Functional</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="apps">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">03 — Projects</span>
+      <h2>Shipped on Google Play</h2>
+    </div>
+    <div class="app-grid">
+
+      <div class="app-card">
+        <div class="app-icon">AI</div>
+        <h3>AI Gallery</h3>
+        <p>A gallery app inspired by Google Photos that finds photos by face or by text inside them, even in Arabic or Urdu — blending on-device ML with an OCR fallback, plus offline search inside PDFs, Word docs, and slides.</p>
+        <a href="https://drive.google.com/file/d/1ZuN8tB8Cu7WMFuPrV7sBpFu9wwzIYvfN/view?usp=drivesdk" target="_blank" class="app-link">View demo ↗</a>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">ST</div>
+        <h3>Stickers Maker & Logo Maker</h3>
+        <p>Turns photos into animated WhatsApp stickers through a custom WebP pipeline, backed by Firebase.</p>
+        <a href="https://play.google.com/store/apps/details?id=ai.sticker.maker.stickermaker.whatsappstickers.stickers.stickermakerforwhatsapp" target="_blank" class="app-link">Play Store ↗</a>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">SR</div>
+        <h3>Screen Recorder</h3>
+        <p>A screen capture and video editing app built for simplicity and speed.</p>
+        <a href="https://play.google.com/store/apps/details?id=videoeditor.screenrecorder.videorecorder.recorder.editor" target="_blank" class="app-link">Play Store ↗</a>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">DR</div>
+        <h3>All Documents Reader & Editor</h3>
+        <p>A multi-format document viewer and editor with Google Drive sync for effortless cloud backup.</p>
+        <a href="https://play.google.com/store/apps/details?id=alldocumentreader.documentreader.office.viewer.filereader.pdfeditor" target="_blank" class="app-link">Play Store ↗</a>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">VB</div>
+        <h3>Volume Booster</h3>
+        <p>A system sound and bass-boost equalizer that gets more out of any phone's speakers.</p>
+        <a href="https://play.google.com/store/apps/details?id=volume.booster.sound.equalizer.bassboost.audioboost" target="_blank" class="app-link">Play Store ↗</a>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">BP</div>
+        <h3>Blood Pressure Tracker</h3>
+        <p>A 5-module health tracker covering blood pressure, heart rate, weight/BMI, blood sugar, and cholesterol, with trend graphs.</p>
+        <a href="https://play.google.com/store/apps/details?id=bloodpressureapp.bloodpressuretracker.bloodpressuremonitor" target="_blank" class="app-link">Play Store ↗</a>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">VP</div>
+        <h3>Video Player</h3>
+        <p>A local media player with folder browsing, Picture-in-Picture, YouTube playback, streaming, and full MKV/MP4 support.</p>
+        <a href="https://apkpure.net/video-player-hd-media-player/video.player.mediaplayer.mp4player.videoplayer" target="_blank" class="app-link">View app ↗</a>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">WX</div>
+        <h3>Weather Forecast & Radar</h3>
+        <p>Live weather, air-quality, and earthquake data on home-screen widgets, with forecast graphs at a glance.</p>
+        <a href="https://play.google.com/store/apps/details?id=weatherforecast.radar.widget" target="_blank" class="app-link">Play Store ↗</a>
+      </div>
+
+      <div class="app-card">
+        <div class="app-icon">EX</div>
+        <h3>Expenses Manager</h3>
+        <p>A Firebase-backed group bill-splitting tool with expense visualization and cloud backup.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">04 — Skills</span>
+      <h2>Tools of the trade</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h4>LANGUAGE & ARCHITECTURE</h4>
+        <ul>
+          <li>Kotlin (Coroutines, Flow), Java</li>
+          <li>MVVM · Clean Architecture</li>
+          <li>Multi-module · Repository Pattern</li>
+          <li>Use Cases · SOLID Principles</li>
+          <li>Hilt · StateFlow · SharedFlow</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>JETPACK & DATA</h4>
+        <ul>
+          <li>WorkManager · Room</li>
+          <li>ViewModel/LiveData · Navigation</li>
+          <li>Paging 3 · DataStore</li>
+          <li>Retrofit · Gson/Moshi</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>AI / ML & DOCUMENTS</h4>
+        <ul>
+          <li>ML Kit (OCR, Face Detection)</li>
+          <li>TensorFlow Lite · Computer Vision</li>
+          <li>Tesseract4Android</li>
+          <li>Apache POI · MuPDF/SOLIB SDK</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>CLOUD & PLATFORM</h4>
+        <ul>
+          <li>Firebase (Firestore, Auth, FCM, Storage)</li>
+          <li>Crashlytics · Performance · Remote Config</li>
+          <li>Google Maps SDK · Play Integrity API</li>
+          <li>AdMob · Play Billing Library</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>MEDIA & HARDWARE</h4>
+        <ul>
+          <li>CameraX</li>
+          <li>Media3 / ExoPlayer</li>
+          <li>Content Providers · Broadcast Receivers</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>QUALITY, CI/CD & TOOLS</h4>
+        <ul>
+          <li>JUnit · Espresso · Mockito</li>
+          <li>Gradle (Kotlin DSL) · ProGuard/R8</li>
+          <li>GitHub Actions CI/CD</li>
+          <li>Git · Agile/Scrum · Code Reviews</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <span class="section-num">05 — Contact</span>
+    <h2>Let's build something.</h2>
+    <p>Open to Senior Android roles and interesting freelance work. The fastest way to reach me is below.</p>
+    <div class="contact-links">
+      <a href="mailto:waqasyousafy@gmail.com">waqasyousafy@gmail.com ↗</a>
+      <a href="tel:+923174031726">+92 317 4031726</a>
+      <a href="https://github.com/waqasyousafy" target="_blank">GitHub ↗</a>
+      <a href="https://linkedin.com/in/waqas-yousaf" target="_blank">LinkedIn ↗</a>
+    </div>
+    <div class="foot-note">Lahore, Pakistan · © 2026 Waqas Yousaf</div>
+  </div>
+</footer>
+
+</body>
+</html>
